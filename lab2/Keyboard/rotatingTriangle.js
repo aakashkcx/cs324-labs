@@ -45,7 +45,16 @@ window.onload = function init() {
       gl.uniform1f(thetaLoc, theta);
     }
     // Your Code Here
-    // if(e.key=='ArrowDown'){}
+    if (e.key == "ArrowDown") {
+      console.log(`Key "${e.key}" pressed  [event: keydown]`);
+      theta += 0.1;
+      gl.uniform1f(thetaLoc, theta);
+    }
+    if (e.key == "Enter") {
+      console.log(`Key "${e.key}" pressed  [event: keydown]`);
+      theta = 0;
+      gl.uniform1f(thetaLoc, theta);
+    }
   });
 
   render();

@@ -46,7 +46,9 @@ function main() {
     y = (canvas.height / 2 - (y - rect.top)) / (canvas.height / 2);
 
     console.log("WebGL coordinates mouse x:" + x + " mouse y:" + y);
-    // Your Code Here
+
+    mousePos.set([x, y]);
+    gl.uniform2fv(m_Increment, mousePos);
 
     render();
   });
