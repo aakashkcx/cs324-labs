@@ -115,6 +115,14 @@ window.onload = function init() {
   document.getElementById("phiSlider").onchange = function (event) {
     phi = (event.target.value * Math.PI) / 180.0;
   };
+  document.getElementById("widthSlider").onchange = function (event) {
+    left = -event.target.value;
+    right = +event.target.value;
+  };
+  document.getElementById("heightSlider").onchange = function (event) {
+    ytop = +event.target.value;
+    bottom = -event.target.value;
+  };
 
   render();
 };

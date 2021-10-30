@@ -18,6 +18,9 @@ var theta = [0, 0, 0];
 var thetaLoc;
 var stop = true;
 
+var scale = 1.0;
+var scaleLoc;
+
 window.onload = function init() {
   canvas = document.getElementById("gl-canvas");
 
@@ -57,6 +60,8 @@ window.onload = function init() {
 
   thetaLoc = gl.getUniformLocation(program, "theta");
 
+  scaleLoc = gl.getUniformLocation(program, "scale");
+
   //event listeners for buttons
   document.getElementById("xButton").onclick = function () {
     axis = xAxis;
@@ -69,6 +74,15 @@ window.onload = function init() {
   document.getElementById("zButton").onclick = function () {
     axis = zAxis;
     stop = false;
+  };
+  document.getElementById("shrinkButton").onclick = function () {
+    scale = 0.5;
+  };
+  document.getElementById("resetButton").onclick = function () {
+    scale = 1.0;
+  };
+  document.getElementById("increaseButton").onclick = function () {
+    scale = 2.0;
   };
 
   render();
@@ -129,6 +143,7 @@ function render() {
     theta[axis] += 1.0;
 
   gl.uniform3fv(thetaLoc, theta);
+  gl.uniform1f(scaleLoc, scale);
 
   gl.drawArrays(gl.TRIANGLES, 0, NumVertices);
 

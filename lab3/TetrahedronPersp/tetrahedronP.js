@@ -117,7 +117,6 @@ window.onload = function init() {
   document.getElementById("phiSlider").onchange = function (event) {
     phi = (event.target.value * Math.PI) / 180.0;
   };
-
   document.getElementById("fovSlider").onchange = function (event) {
     fovy = event.target.value;
   };
