@@ -28,14 +28,14 @@ var vb = vec4(0.0, 0.942809, 0.333333, 1);
 var vc = vec4(-0.816497, -0.471405, 0.333333, 1);
 var vd = vec4(0.816497, -0.471405, 0.333333, 1);
 
-var ca = vec4(-0.5, 0.5, -0.5, 1);
-var cb = vec4(0.5, 0.5, -0.5, 1);
-var cc = vec4(-0.5, -0.5, -0.5, 1);
-var cd = vec4(0.5, -0.5, -0.5, 1);
-var ce = vec4(-0.5, 0.5, 0.5, 1);
-var cf = vec4(0.5, 0.5, 0.5, 1);
-var cg = vec4(-0.5, -0.5, 0.5, 1);
-var ch = vec4(0.5, -0.5, 0.5, 1);
+var ca = vec4(0, 0, 0, 1);
+var cb = vec4(1, 0, 0, 1);
+var cc = vec4(1, 1, 0, 1);
+var cd = vec4(0, 1, 0, 1);
+var ce = vec4(0, 0, 1, 1);
+var cf = vec4(1, 0, 1, 1);
+var cg = vec4(1, 1, 1, 1);
+var ch = vec4(0, 1, 1, 1);
 
 // light source specifications:
 var lightPosition = vec4(1.0, 1.0, 1.0, 1.0);
@@ -65,19 +65,18 @@ function tetrahedron(a, b, c, d, n) {
   divideTriangle(a, c, d, n);
 }
 
-// this function divides the four sides of the tetrahedron
 function cube(a, b, c, d, e, f, g, h, n) {
   divideSquare(a, b, c, d, n);
+  divideSquare(a, b, f, e, n);
+  divideSquare(b, c, g, f, n);
+  divideSquare(c, d, h, g, n);
+  divideSquare(d, a, e, h, n);
   divideSquare(e, f, g, h, n);
-  divideSquare(a, b, e, f, n);
-  divideSquare(b, d, f, h, n);
-  divideSquare(c, d, g, h, n);
-  divideSquare(a, c, e, g, n);
 }
 
 function divideSquare(a, b, c, d, count) {
   divideTriangle(a, b, c, count);
-  divideTriangle(b, c, d, count);
+  divideTriangle(c, d, a, count);
 }
 
 function divideTriangle(a, b, c, count) {
