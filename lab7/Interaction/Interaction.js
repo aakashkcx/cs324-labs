@@ -18,34 +18,61 @@ function init() {
   scene = new THREE.Scene();
   scene.background = new THREE.Color(0xcccccc);
 
-  const boxWidth = 1;
-  const boxHeight = 1;
-  const boxDepth = 1;
-  const geometry = new THREE.BoxGeometry(boxWidth, boxHeight, boxDepth);
+  const planeGeometry = new THREE.PlaneGeometry(10, 10);
+  const planeMaterial = new THREE.MeshPhongMaterial({ color: 0xaaaaaa });
+  const plane = new THREE.Mesh(planeGeometry, planeMaterial);
+  plane.rotation.x = -0.5 * Math.PI;
+  plane.receiveShadow = true;
+  scene.add(plane);
 
-  function makeInstance(geometry, color, x) {
-    const material = new THREE.MeshPhongMaterial({ color });
+  const coneGeometry = new THREE.ConeGeometry(1, 2);
+  const coneMaterial = new THREE.MeshPhongMaterial({ color: 0xff0000 });
+  const cone = new THREE.Mesh(coneGeometry, coneMaterial);
+  cone.position.y = 1;
+  cone.position.x = 2;
+  scene.add(cone);
 
-    const cube = new THREE.Mesh(geometry, material);
-    scene.add(cube);
+  const sphereGeometry = new THREE.SphereGeometry(1);
+  const sphereMaterial = new THREE.MeshPhongMaterial({ color: 0x00ff00 });
+  const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
+  sphere.position.y = 1;
+  scene.add(sphere);
 
-    cube.position.x = x;
+  const cubeGeometry = new THREE.BoxGeometry(1.5, 1.5, 1.5);
+  const cubeMaterial = new THREE.MeshPhongMaterial({ color: 0x0000ff });
+  const cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
+  cube.position.y = 0.75;
+  cube.position.x = -2;
+  scene.add(cube);
 
-    return cube;
-  }
+  // const boxWidth = 1;
+  // const boxHeight = 1;
+  // const boxDepth = 1;
+  // const geometry = new THREE.BoxGeometry(boxWidth, boxHeight, boxDepth);
 
-  const cubes = [
-    makeInstance(geometry, 0x44abc8, 0),
-    makeInstance(geometry, 0x8244aa, -2),
-    makeInstance(geometry, 0xfff00, 2),
-  ];
+  // function makeInstance(geometry, color, x) {
+  //   const material = new THREE.MeshPhongMaterial({ color });
+
+  //   const cube = new THREE.Mesh(geometry, material);
+  //   scene.add(cube);
+
+  //   cube.position.x = x;
+
+  //   return cube;
+  // }
+
+  // const cubes = [
+  //   makeInstance(geometry, 0x44abc8, 0),
+  //   makeInstance(geometry, 0x8244aa, -2),
+  //   makeInstance(geometry, 0xfff00, 2),
+  // ];
 
   // lights
   const dirLight = new THREE.DirectionalLight(0xffffff, 1.1);
   dirLight.position.set(0, 10, -5);
   scene.add(dirLight);
 
-  const ambientLight = new THREE.AmbientLight(0xf22222, 2.0);
+  const ambientLight = new THREE.AmbientLight(0x222200, 2.0);
   scene.add(ambientLight);
 
   // renderer
